@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Platform · [Your Name] for Mayor</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ---------- RESET & BASE ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background: url('https://images.unsplash.com/photo-1517935706615-2717063c2225?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            background-attachment: fixed;
+            padding: 2rem 1.5rem;
+            position: relative;
+        }
+
+        /* Dark overlay for contrast */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        /* ---------- MAIN GLASS CONTAINER ---------- */
+        .glass-container {
+            position: relative;
+            z-index: 1;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 3rem 2.5rem;
+
+            /* GLASS EFFECT */
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(18px) saturate(180%);
+            -webkit-backdrop-filter: blur(18px) saturate(180%);
+            border-radius: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+
+            color: #fff;
+        }
+
+        /* ---------- NAVIGATION (simple back link) ---------- */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .nav-bar .back-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 0.5rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .nav-bar .back-link:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            transform: translateX(-4px);
+        }
+
+        .nav-bar .campaign-tag {
+            font-size: 0.8rem;
+            opacity: 0.5;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        /* ---------- HEADER ---------- */
+        .platform-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .platform-header .badge {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 0.3rem 1.2rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #ffd43b;
+            margin-bottom: 1rem;
+        }
+
+        .platform-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #b8d0ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .platform-header p {
+            font-size: 1.2rem;
+            opacity: 0.7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ---------- PLATFORM GRID (2 columns on desktop) ---------- */
+        .platform-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin-top: 1rem;
+        }
+
+        /* ---------- ISSUE CARDS (also slightly glassy) ---------- */
+        .issue-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1.5rem;
+            padding: 1.8rem 1.8rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .issue-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-6px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .issue-card .icon {
+            font-size: 2.2rem;
+            color: #ffd43b;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 0.6rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .issue-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.01em;
+        }
+
+        .issue-card .sub-issue {
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0.6;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .issue-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            opacity: 0.85;
+            margin-bottom: 1rem;
+        }
+
+        .issue-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .issue-card ul li {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            padding: 0.4rem 0 0.4rem 1.8rem;
+            position: relative;
+            opacity: 0.8;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .issue-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .issue-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #ffd43b;
+            font-weight: 700;
+        }
+
+        /* ---------- FULL-WIDTH "VISION" SECTION ---------- */
+        .vision-section {
+            grid-column: 1 / -1;
+            background: rgba(255, 215, 0, 0.06);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 1.5rem;
+            padding: 2rem 2.2rem;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+
+        .vision-section h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+
+        .vision-section p {
+            font-size: 1.05rem;
+            opacity: 0.8;
+            max-width: 700px;
+            margin: 0 auto 1.2rem;
+            line-height: 1.7;
+        }
+
+        .vision-section .vision-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.4rem 1.4rem;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* ---------- CALL TO ACTION ---------- */
+        .platform-cta {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .platform-cta p {
+            font-size: 1rem;
+            opacity: 0.7;
+            margin-bottom: 1.2rem;
+        }
+
+        .platform-cta .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 0.9rem 2.8rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .platform-cta .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.03);
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 768px) {
+            .glass-container {
+                padding: 2rem 1.2rem;
+                border-radius: 1.8rem;
+            }
+
+            .platform-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .platform-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .vision-section {
+                padding: 1.5rem 1.2rem;
+            }
+
+            .vision-section h3 {
+                font-size: 1.2rem;
+            }
+
+            .nav-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .platform-cta .btn-primary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .glass-container {
+                padding: 1.5rem 0.8rem;
+                border-radius: 1.2rem;
+            }
+            .platform-header h1 {
+                font-size: 1.8rem;
+            }
+            .issue-card {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-container">
+
+        <!-- Navigation -->
+        <nav class="nav-bar">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            <span class="campaign-tag"><i class="fas fa-flag-checkered"></i> 2026 · Toronto</span>
+        </nav>
+
+        <!-- Header -->
+        <div class="platform-header">
+            <div class="badge"><i class="fas fa-bullseye"></i> Our Commitment</div>
+            <h1>A Platform for <br />All Torontonians</h1>
+            <p>Practical, bold, and rooted in the communities that make this city great.</p>
+        </div>
+
+        <!-- Platform Grid -->
+        <div class="platform-grid">
+
+            <!-- CARD 1: Housing -->
+            <div class="issue-card">
+                <div class="icon"><i class="fas fa-home"></i></div>
+                <h3>Housing & Affordability</h3>
+                <span class="sub-issue">A city that works for renters and buyers</span>
+                <p>Toronto's housing crisis is the #1 issue. We need to build faster, smarter, and more inclusively.</p>
+                <ul>
+                    <li>Unlock underused city-owned land for mixed-income housing</li>
+                    <li>Expand rent-to-own programs for middle-class families</li>
+                    <li>Streamline approvals to cut red tape, not safety</li>
+                    <li>Protect existing rental stock with stronger enforcement</li>
+                </ul>
+            </div>
+
+            <!-- CARD 2: Transit -->
+            <div class="issue-card">
+                <div class="icon"><i class="fas fa-train-subway"></i></div>
+                <h3>Transit & Mobility</h3>
+                <span class="sub-issue">Getting Toronto moving again</span>
+                <p>We need reliable, affordable transit that connects every corner of the city—not just downtown.</p>
+                <ul>
+                    <li>Accelerate the Eglinton Crosstown and Ontario Line</li>
+                    <li>Integrate TTC with GO and regional transit seamlessly</li>
+                    <li>Freeze fares for 2026 and expand the Fair Pass program</li>
+                    <li>Build safe, connected bike lanes on main arteries</li>
+                </ul>
+            </div>
+
+            <!-- CARD 3: Public Safety -->
+            <div class="issue-card">
+                <div class="icon"><i class="fas fa-shield-halved"></i></div>
+                <h3>Community Safety</h3>
+                <span class="sub-issue">Safe streets, trusted policing</span>
+                <p>Safety means investing in communities, not just enforcement. We need a holistic approach.</p>
+                <ul>
+                    <li>Expand community crisis response teams (non-police)</li>
+                    <li>Increase lighting and cameras in high-risk areas</li>
+                    <li>Invest in youth programs & mental health supports</li>
+                    <li>Rebuild trust between police and marginalized communities</li>
+                </ul>
+            </div>
+
+            <!-- CARD 4: Budget & Economy -->
+            <div class="issue-card">
+                <div class="icon"><i class="fas fa-coins"></i></div>
+                <h3>Fiscal Responsibility</h3>
+                <span class="sub-issue">A city that spends wisely</span>
+                <p>We need to balance the books without cutting front-line services. Smart budgeting is non-negotiable.</p>
+                <ul>
+                    <li>Conduct a zero-based budget review every 2 years</li>
+                    <li>Increase revenue through vacant home tax and commercial reform</li>
+                    <li>Protect funding for libraries, parks, and community centres</li>
+                    <li>Create a "Future Fund" for infrastructure reserves</li>
+                </ul>
+            </div>
+
+            <!-- VISION SECTION (full width) -->
+            <div class="vision-section">
+                <h3>🌆 One Toronto, One Future</h3>
+                <p>
+                    This isn't just a list of promises. It's a roadmap for a Toronto where your kids can afford to stay,
+                    where your commute isn't a daily battle, and where every neighbourhood feels like home.
+                </p>
+                <span class="vision-tag">
+                    <i class="fas fa-check-circle" style="color: #ffd43b;"></i> 
+                    Built with input from 5,000+ Torontonians
+                </span>
+            </div>
+
+        </div><!-- /platform-grid -->
+
+        <!-- Call to Action -->
+        <div class="platform-cta">
+            <p><i class="fas fa-heart" style="color: #ff6b6b;"></i> Believe in this vision? Join us.</p>
+            <a href="index.html" class="btn-primary">
+                <i class="fas fa-hand-peace"></i> Get Involved
+            </a>
+        </div>
+
+    </div><!-- /glass-container -->
+
+</body>
+</html>

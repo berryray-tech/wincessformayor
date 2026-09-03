@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About · [Your Name] for Mayor</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ---------- RESET & BASE ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background: url('https://images.unsplash.com/photo-1517935706615-2717063c2225?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            background-attachment: fixed;
+            padding: 2rem 1.5rem;
+            position: relative;
+        }
+
+        /* Dark overlay for contrast */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 0;
+        }
+
+        /* ---------- MAIN GLASS CONTAINER ---------- */
+        .glass-container {
+            position: relative;
+            z-index: 1;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 3rem 2.5rem;
+
+            /* GLASS EFFECT */
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(18px) saturate(180%);
+            -webkit-backdrop-filter: blur(18px) saturate(180%);
+            border-radius: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+
+            color: #fff;
+        }
+
+        /* ---------- NAVIGATION ---------- */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .nav-bar .back-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 0.5rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .nav-bar .back-link:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            transform: translateX(-4px);
+        }
+
+        .nav-bar .campaign-tag {
+            font-size: 0.8rem;
+            opacity: 0.5;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        /* ---------- ABOUT HEADER ---------- */
+        .about-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .about-header .badge {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 0.3rem 1.2rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #ffd43b;
+            margin-bottom: 1rem;
+        }
+
+        .about-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #b8d0ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .about-header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ---------- PROFILE SECTION (photo + intro) ---------- */
+        .profile-section {
+            display: flex;
+            gap: 2.5rem;
+            align-items: flex-start;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-image {
+            flex: 0 0 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 3px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            backdrop-filter: blur(4px);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-bio {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .profile-bio h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .profile-bio .title-role {
+            font-size: 1rem;
+            opacity: 0.6;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+
+        .profile-bio p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            opacity: 0.85;
+            margin-bottom: 1.2rem;
+        }
+
+        .profile-bio .quick-facts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem 2rem;
+            margin-top: 1rem;
+        }
+
+        .profile-bio .quick-facts span {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .profile-bio .quick-facts i {
+            color: #ffd43b;
+            width: 1.2rem;
+        }
+
+        /* ---------- STORY SECTIONS ---------- */
+        .story-section {
+            margin: 2.5rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+        }
+
+        .story-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 1.5rem;
+            padding: 1.8rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .story-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .story-card .icon {
+            font-size: 1.8rem;
+            color: #ffd43b;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.08);
+            padding: 0.5rem 0.7rem;
+            border-radius: 12px;
+        }
+
+        .story-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+
+        .story-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            opacity: 0.8;
+        }
+
+        /* ---------- VALUES / COMMITMENT SECTION ---------- */
+        .values-section {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.08);
+            border-radius: 1.5rem;
+            padding: 2rem 2.2rem;
+            margin: 2rem 0 2.5rem;
+            text-align: center;
+        }
+
+        .values-section h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .values-section p {
+            font-size: 1.05rem;
+            opacity: 0.8;
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.7;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .values-grid .value-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem 1.2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .values-grid .value-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.02);
+            border-color: rgba(255, 215, 0, 0.2);
+        }
+
+        .values-grid .value-item i {
+            color: #ffd43b;
+            margin-right: 0.5rem;
+        }
+
+        /* ---------- CALL TO ACTION ---------- */
+        .about-cta {
+            text-align: center;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .about-cta p {
+            font-size: 1rem;
+            opacity: 0.7;
+            margin-bottom: 1.2rem;
+        }
+
+        .about-cta .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 0.9rem 2.8rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .about-cta .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.03);
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 768px) {
+            .glass-container {
+                padding: 2rem 1.2rem;
+                border-radius: 1.8rem;
+            }
+
+            .about-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .profile-section {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .profile-image {
+                flex: 0 0 140px;
+                height: 140px;
+                font-size: 3.5rem;
+            }
+
+            .profile-bio .quick-facts {
+                justify-content: center;
+            }
+
+            .story-section {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .values-section {
+                padding: 1.5rem 1.2rem;
+            }
+
+            .nav-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .about-cta .btn-primary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .glass-container {
+                padding: 1.5rem 0.8rem;
+                border-radius: 1.2rem;
+            }
+            .about-header h1 {
+                font-size: 1.8rem;
+            }
+            .profile-image {
+                flex: 0 0 110px;
+                height: 110px;
+                font-size: 2.8rem;
+            }
+            .story-card {
+                padding: 1.2rem;
+            }
+            .values-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-container">
+
+        <!-- Navigation -->
+        <nav class="nav-bar">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            <span class="campaign-tag"><i class="fas fa-flag-checkered"></i> 2026 · Toronto</span>
+        </nav>
+
+        <!-- Header -->
+        <div class="about-header">
+            <div class="badge"><i class="fas fa-user-circle"></i> Meet the Candidate</div>
+            <h1>My Story, My Toronto</h1>
+            <p class="subtitle">A lifetime of service, a vision for our city's future.</p>
+        </div>
+
+        <!-- Profile Section -->
+        <div class="profile-section">
+
+            <!-- Profile Photo Placeholder -->
+            <div class="profile-image">
+                <!-- Replace the <i> tag below with an <img> tag when you have a photo -->
+                <i class="fas fa-user-circle"></i>
+                <!-- Example with an image (uncomment and use your own photo):
+                <img src="your-photo.jpg" alt="[Your Name]" />
+                -->
+            </div>
+
+            <!-- Bio -->
+            <div class="profile-bio">
+                <h2>Wincess Dorville</h2>
+                <span class="title-role">Wincess Dorville for Mayor · Toronto</span>
+                <p>
+                    I was born and raised in <strong>Scarborough</strong>, and I've spent my life working 
+                    alongside Torontonians in every ward. From my early days as a community organizer to 
+                    my years in public service, I've seen firsthand what happens when City Hall forgets 
+                    the people it serves.
+                </p>
+                <p>
+                    I'm running for mayor because I believe Toronto can be a city where <strong>every 
+                    neighbourhood thrives</strong>—not just the ones with the most lobbyists.
+                </p>
+                <div class="quick-facts">
+                    <span><i class="fas fa-map-pin"></i> Born in Scarborough</span>
+                    <span><i class="fas fa-graduation-cap"></i> U of T · Public Policy</span>
+                    <span><i class="fas fa-users"></i> Community Organizer, 12+ years</span>
+                    <span><i class="fas fa-home"></i> Lives in Ward [Your Ward]</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Story Grid -->
+        <div class="story-section">
+
+            <div class="story-card">
+                <div class="icon"><i class="fas fa-tree-city"></i></div>
+                <h3>Rooted in Community</h3>
+                <p>
+                    I cut my teeth organizing tenant rights groups in the 2010s, fought to save local parks from 
+                    development, and helped launch one of the city's first community fridge networks. 
+                    I don't just talk about Toronto—I've been showing up for it my whole life.
+                </p>
+            </div>
+
+            <div class="story-card">
+                <div class="icon"><i class="fas fa-briefcase"></i></div>
+                <h3>Built for the Work</h3>
+                <p>
+                    Before this campaign, I spent 8 years in municipal policy—helping design affordable housing 
+                    strategies and transit expansion plans. I know how City Hall works, and more importantly, 
+                    I know how to make it work for you.
+                </p>
+            </div>
+
+            <div class="story-card">
+                <div class="icon"><i class="fas fa-hand-holding-heart"></i></div>
+                <h3>Driven by Purpose</h3>
+                <p>
+                    In 2020, I watched my own neighbourhood struggle as small businesses closed and families 
+                    fell behind on rent. That was the moment I realized: <strong>Toronto doesn't need more 
+                    politicians. It needs leaders who are willing to fight.</strong>
+                </p>
+            </div>
+
+            <div class="story-card">
+                <div class="icon"><i class="fas fa-flag"></i></div>
+                <h3>Why I'm Running</h3>
+                <p>
+                    I'm running because I believe in a Toronto where your postal code doesn't determine your 
+                    opportunities. A Toronto where we build housing, not barriers. Where we trust each other, 
+                    and where City Hall listens. That's the Toronto I know we can build—together.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Values Section -->
+        <div class="values-section">
+            <h3>🤝 What I Stand For</h3>
+            <p>
+                These aren't just talking points—they're the principles that guide every decision I make 
+                and every policy I propose.
+            </p>
+            <div class="values-grid">
+                <div class="value-item"><i class="fas fa-home"></i> Housing Justice</div>
+                <div class="value-item"><i class="fas fa-train"></i> Reliable Transit</div>
+                <div class="value-item"><i class="fas fa-handshake"></i> Community Trust</div>
+                <div class="value-item"><i class="fas fa-scale-balanced"></i> Fair Budgets</div>
+                <div class="value-item"><i class="fas fa-leaf"></i> Green Future</div>
+                <div class="value-item"><i class="fas fa-users-gear"></i> Participatory Gov.</div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="about-cta">
+            <p><i class="fas fa-heart" style="color: #ff6b6b;"></i> Get to know me. Then join the movement.</p>
+            <a href="index.html" class="btn-primary">
+                <i class="fas fa-hand-peace"></i> Join the Campaign
+            </a>
+        </div>
+
+    </div><!-- /glass-container -->
+
+</body>
+</html>
